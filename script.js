@@ -1,26 +1,37 @@
 console.clear();
-///////////////////////////////////////////////
+
 let mouseDown = false;
 let paintedCells = [];
 let cellArray = [];
+const stepValues = [5, 10, 20];
 let eraser = false;
 let cellHeight = 10;
 let numberOfCells = 4000;
+let showGrid = true;
 
-const eraserTool = document.querySelector("#eraser");
-const canvas = document.querySelector("#canvas");
+const eraserTool = document.getElementById("eraser");
+const canvas = document.getElementById("canvas");
 const canvasColor = document.getElementById("canvasColor");
 const brushColor = document.getElementById("brushColor");
 const rangeInput = document.getElementById("resolution");
 const rangeCounter = document.querySelectorAll(".rangeCounter");
+const gridButton = document.getElementById("gridToggle");
 
+gridButton.addEventListener("click", () => {
+  // showGrid = !showGrid;
+  cellArray.forEach((cell) => {
+    cell.classList.toggle("borderChange");
+  });
+});
 rangeCounter.forEach((counter) => {
   counter.addEventListener("click", (event) => {
     if (event.target.id === "decrement") {
       rangeInput.value = rangeInput.value - 1;
+      console.log(rangeInput.value);
     }
     if (event.target.id === "increment") {
       rangeInput.value = rangeInput.value + 1;
+      console.log(rangeInput.value);
     }
     calculateResolution(rangeInput.value);
     canvas.innerHTML = "";
@@ -28,11 +39,15 @@ rangeCounter.forEach((counter) => {
   });
 });
 
+canvasColor.oninput = () => {
+  console.log(canvasColor);
+  canvas.style.backgroundColor = canvasColor.value;
+};
+
 function calculateResolution(cellSize) {
   const canvasSize = 400000;
   numberOfCells = canvasSize / (cellSize * cellSize);
   cellHeight = cellSize;
-  // return cellNumber;
 }
 
 rangeInput.onchange = () => {
@@ -46,7 +61,7 @@ eraserTool.addEventListener("click", () => {
   eraser = !eraser;
   console.log(eraser);
 });
-canvas.addEventListener("click", () => {
+canvas.addEventListener("mousedown", () => {
   if (mouseDown === true) {
     mouseDown = false;
   } else {
@@ -59,10 +74,11 @@ function createDiv() {
     let cell = document.createElement("div");
 
     cell.classList.add("gridCell");
-    cell.setAttribute("draggable", "false");
-    cell.setAttribute("id", "cell" + i);
     cell.style.height = cellHeight + "px";
     cell.style.width = cellHeight + "px";
+    // if (showGrid === true) {
+    //   cell.style.border = "none";
+    // }
     cell.addEventListener("mousemove", (e) => {
       if (mouseDown == true) {
         // cell.classList.add("changeColour");
@@ -106,13 +122,3 @@ window.addEventListener("load", () => {
 // }, 1000);
 
 function icCreaseResolution() {}
-
-canvasColor.oninput = () => {
-  console.log(canvasColor);
-  canvas.style.backgroundColor = canvasColor.value;
-};
-brushColor.oninput = () => {
-  paintedCells.forEach((cell) => {
-    // cell.style.backgroundColor = brushColor.value;
-  });
-};

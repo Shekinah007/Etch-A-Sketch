@@ -39,16 +39,15 @@ main {
     background-color: rgb(255, 255, 255);
 }
 .gridCell {
-    /* height: 6px; */
-    /* width: 6px; */
-    /* background-color: black; */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0.5px dotted black;
-    /* transition: 1s; */
+    transition: 0.5s;
 }
-
+.borderChange {
+  border: none;
+}
 .changeColour {
     background-color: blue;
 }
