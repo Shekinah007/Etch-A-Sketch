@@ -6,10 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="index.css" rel="stylesheet">
+    <script src="index.js" defer></script>
+
 </head>
 <body>
-<h1>Etch-A-Sketch</h1>
-<div class="canvas"></div>
-    <script src="index.js"></script>
+    <h1>Etch-A-Sketch</h1>
+    <main>
+        <div class="tools">
+            <button>Add Cell</button>
+            <button id="pen">Pen</button>
+            <button id="eraser">Eraser</button>
+            <input type="color" id="canvasColor" class="color-picker">
+            <input type="color" id="brushColor" class="color-picker">
+            <input type="text" id="hex">
+        </div>
+        <!-- <hr> -->
+        <div id="canvas">
+        </div>
+    </main>
+    
 </body>
 </html>
