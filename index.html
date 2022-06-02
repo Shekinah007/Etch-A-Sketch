@@ -19,9 +19,19 @@
             <input type="color" id="canvasColor" class="color-picker">
             <input type="color" id="brushColor" class="color-picker">
             <input type="text" id="hex">
+            <div class="range">
+                <div id="rangeControllers">
+                    <button class="rangeCounter" id="decrement"><</button>
+                    <input type="range"  min="5" max="20" step="1" id="resolution">
+                    <button class="rangeCounter" id="increment" >  ></button>
+                </div>
+                <h3></h3>
+            </div>
         </div>
         <!-- <hr> -->
-        <div id="canvas">
+        <div class="canvas-container">
+            <div id="canvas">
+            </div>
         </div>
     </main>
     

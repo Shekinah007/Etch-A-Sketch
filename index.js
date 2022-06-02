@@ -4,11 +4,43 @@ let mouseDown = false;
 let paintedCells = [];
 let cellArray = [];
 let eraser = false;
+let cellHeight = 10;
+let numberOfCells = 4000;
 
 const eraserTool = document.querySelector("#eraser");
 const canvas = document.querySelector("#canvas");
 const canvasColor = document.getElementById("canvasColor");
 const brushColor = document.getElementById("brushColor");
+const rangeInput = document.getElementById("resolution");
+const rangeCounter = document.querySelectorAll(".rangeCounter");
+
+rangeCounter.forEach((counter) => {
+  counter.addEventListener("click", (event) => {
+    if (event.target.id === "decrement") {
+      rangeInput.value = rangeInput.value - 1;
+    }
+    if (event.target.id === "increment") {
+      rangeInput.value = rangeInput.value + 1;
+    }
+    calculateResolution(rangeInput.value);
+    canvas.innerHTML = "";
+    createDiv();
+  });
+});
+
+function calculateResolution(cellSize) {
+  const canvasSize = 400000;
+  numberOfCells = canvasSize / (cellSize * cellSize);
+  cellHeight = cellSize;
+  // return cellNumber;
+}
+
+rangeInput.onchange = () => {
+  console.log(rangeInput.value);
+  calculateResolution(rangeInput.value);
+  canvas.innerHTML = "";
+  createDiv();
+};
 
 eraserTool.addEventListener("click", () => {
   eraser = !eraser;
@@ -21,12 +53,16 @@ canvas.addEventListener("click", () => {
     mouseDown = true;
   }
 });
+
 function createDiv() {
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < numberOfCells; i++) {
     let cell = document.createElement("div");
+
     cell.classList.add("gridCell");
     cell.setAttribute("draggable", "false");
     cell.setAttribute("id", "cell" + i);
+    cell.style.height = cellHeight + "px";
+    cell.style.width = cellHeight + "px";
     cell.addEventListener("mousemove", (e) => {
       if (mouseDown == true) {
         // cell.classList.add("changeColour");
