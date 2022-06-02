@@ -1,0 +1,17 @@
+body {
+    background-color: aquamarine;
+}
+
+.canvas {
+    height: 60vh;
+    width: 80vw;
+    background-color: beige;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gridCell {
+    height: 20px;
+    width: 20px;
+    background-color: brown;
+}
