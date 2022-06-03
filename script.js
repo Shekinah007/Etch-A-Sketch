@@ -8,6 +8,7 @@ let eraser = false;
 let cellHeight = 10;
 let numberOfCells = 4000;
 let showGrid = true;
+let penActive = false;
 
 const eraserTool = document.getElementById("eraser");
 const canvas = document.getElementById("canvas");
@@ -16,6 +17,7 @@ const brushColor = document.getElementById("brushColor");
 const rangeInput = document.getElementById("resolution");
 const rangeCounter = document.querySelectorAll(".rangeCounter");
 const gridButton = document.getElementById("gridToggle");
+const penIndicator = document.getElementById("penImg");
 
 gridButton.addEventListener("click", () => {
   // showGrid = !showGrid;
@@ -62,9 +64,17 @@ eraserTool.addEventListener("click", () => {
   console.log(eraser);
 });
 canvas.addEventListener("mousedown", () => {
+  penIndicator.classList.toggle("penAnimation");
   if (mouseDown === true) {
+    console.log("pen Active");
+    // penIndicator.style.backgroundColor = "grey";
+    // penIndicator.classList.add("penAnimation");
     mouseDown = false;
   } else {
+    console.log("Pen Inactive");
+    // penIndicator.style.backgroundColor = "cyan";
+    // penIndicator.classList.remove("penAnimation");
+
     mouseDown = true;
   }
 });
@@ -76,21 +86,15 @@ function createDiv() {
     cell.classList.add("gridCell");
     cell.style.height = cellHeight + "px";
     cell.style.width = cellHeight + "px";
-    // if (showGrid === true) {
-    //   cell.style.border = "none";
-    // }
     cell.addEventListener("mousemove", (e) => {
       if (mouseDown == true) {
         // cell.classList.add("changeColour");
         cell.style.backgroundColor = brushColor.value;
-        // paintedCells.push(cell);
-        console.log(paintedCells, "paint");
       }
       if (e.shiftKey) {
         // cell.classList.add("changeColour");
         cell.style.backgroundColor = brushColor.value;
-        // paintedCells.push(cell);
-        console.log(paintedCells, "paint");
+        penIndicator.style.backgroundColor = "green";
       }
       if (mouseDown == true && eraser === true) {
         cell.style.transition = "0s";
@@ -108,6 +112,15 @@ window.addEventListener("load", () => {
   createDiv();
 });
 
+window.addEventListener("keydown", (e) => {
+  penIndicator.style.backgroundColor = "green";
+  penIndicator.classList.add("penAnimation");
+});
+window.addEventListener("keyup", (e) => {
+  penIndicator.style.background = "none";
+  penIndicator.classList.remove("penAnimation");
+});
+
 // setTimeout(() => {
 //   let cells = cellArray;
 //   cells.forEach((cell) => {
@@ -120,5 +133,3 @@ window.addEventListener("load", () => {
 //     });
 //   });
 // }, 1000);
-
-function icCreaseResolution() {}

@@ -1,11 +1,14 @@
 body {
     background-color: antiquewhite;
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
 }
 
 main {
     display: flex;
     justify-content: space-around;
+    height: 520px;
+    /* background: cadetblue; */
 }
 
 .canvas-container {
@@ -13,11 +16,23 @@ main {
     /* background-color: bisque; */
     /* padding: 5x; */
 }
+
+#pen {
+  background: chartreuse;
+  display: flex;
+  justify-content: center;
+
+}
+#penImg {
+  /* background: chocolate; */
+  border-radius: 10px;
+  transition: 1s;
+}
 #canvas {
     min-height: 500px; 
     width: 800px;
    /* padding: 5px; */
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(185, 187, 180);
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -27,8 +42,70 @@ main {
 .tools {
     display: flex;
     flex-direction: column;
+    /* background-color: red; */
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+.color-and-label {
+  /* background: coral; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+button:hover {
+  background: black;
+  color: white;
+  /* animation: rotate 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;   */
+  /* animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1); */
+}
+.penAnimation {
+  animation-direction: alternate;
+  animation: penActive 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
 }
 
+@keyframes penActive {
+  0% {
+    transform: rotate(20deg);
+  }
+  100%{
+    transform: rotate(-20deg);
+  }
+}
+button:active {
+  animation-direction: alternate;
+  animation: rotate 5s;
+  color: antiquewhite;
+  /* background: cadetblue; */
+  /* animation-iteration-count: infinite; */
+  animation-direction: alternate;  
+}
+button {
+  transition: 0.1s;
+  box-sizing: border-box;
+  background: none;
+  border-radius: 5px;
+  height: 50px;
+  background: burlywood;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  /* 25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0);
+  } */
+  100% {
+    transform: scale(0.75)
+  }
+ }
 .color-picker {
     border-radius : 5px;
     border: none;
@@ -42,7 +119,7 @@ main {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: 0.5px dotted black;
+    border: 0.5px dotted white;
     transition: 0.5s;
 }
 .borderChange {
@@ -56,13 +133,12 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: blue; */
+    background-color: none;
 }
 
 #resolution {
-    /* background-color: brown;
-    color: red;
-    padding: 20px; */
+    background: none;
+   
 }
 
 

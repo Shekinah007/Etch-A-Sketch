@@ -13,12 +13,17 @@
     <h1>Etch-A-Sketch</h1>
     <main>
         <div class="tools">
-            <button>Add Cell</button>
-            <button id="pen">Pen</button>
+            <span id="pen"><img alt="pen active state" src="./images/brush_FILL0_wght400_GRAD0_opsz48.svg" id="penImg"> </span>
             <button id="eraser">Eraser</button>
             <button id="gridToggle"> Show Grid Lines</button>
-            <input type="color" id="canvasColor" class="color-picker">
-            <input type="color" id="brushColor" class="color-picker">
+            <span class="color-and-label">
+                <span>Canvas:</span>
+                <input type="color" id="canvasColor" class="color-picker" alt="change canvas">
+            </span>
+            <span class="color-and-label">
+                <span>Brush:</span>
+                <input type="color" id="brushColor" class="color-picker" alt= "change brush">
+            </span>
             
             <input type="text" id="hex">
             <div class="range">

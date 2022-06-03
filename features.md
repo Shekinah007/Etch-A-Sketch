@@ -3,3 +3,4 @@ Press space to toggle eraser.
 Show grid lines.
 Animate header to bounce infinitely.
 Show resolution in percentage.
+Eraser active state
