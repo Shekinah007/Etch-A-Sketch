@@ -1,43 +1,182 @@
 body {
-    background-color: antiquewhite;
+    background: antiquewhite;
+    background-color: #e0d394;
+    /* background-color: black; */
     display: flex;
     flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: space-between; */
+    justify-items: center;
+    align-content: center;
+    font-family: serif;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  width: 100vw;
+  /* background-color: brown; */
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  box-sizing: border-box;
+}
+.overlay {
+  position: fixed;
+  /* height: 00vh; */
+  width: 00vw;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(13, 14, 14, 0.74);
+  z-index: 1;
+  transition: 0.5s;
+}
+.overlay-visible {
+  width: 100vw;
+  /* height: 100vh; */
+}
+.info-btn {
+  height: 40px;
+  /* animation: bounce;   */
+  /* animation-duration: 2s; */
+  /* animation-iteration-count: infinite; */
+  /* background: red; */
+  z-index: 8;
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.64, 0, 0.78, 0) 1s infinite normal forwards;
+}
+.info-btn:hover {
+  background: burlywood;
+}
+.info-btn-active {
+  background: rgb(252, 149, 15);  
+}
+.info-btn:active {
+  background: black;
+}
+@keyframes pulse {
+	0% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+		transform-origin: center center;
+	}
+
+	10% {
+		animation-timing-function: ease-in;
+		transform: scale(0.91);
+	}
+
+	17% {
+		animation-timing-function: ease-out;
+		transform: scale(0.98);
+	}
+
+	33% {
+		animation-timing-function: ease-in;
+		transform: scale(0.87);
+	}
+
+	45% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+}
+.info-panel {
+  background: burlywood;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  
+  height: 00vh;
+  width: 00vw;
+  right: 55px;
+  top: 55px;
+  bottom: 0;
+
+  
+  border-radius: 10px;
+  transition: 0.5s;
+  z-index: 4;
+}
+.info-panel-visible {
+  height: 50vh;
+  width: 50vw;
+  padding: 20px;
+}
 main {
     display: flex;
     justify-content: space-around;
-    height: 520px;
+    height: 500px;
+    align-items: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
     /* background: cadetblue; */
+    background: #e0d394;
+    /* background: black; */
+    /* border-radius: 15%; */
+    box-shadow: 11.71px 11.71px 15px #CCC087, -11.71px -11.71px 15px #F4E6A1;
 }
 
 .canvas-container {
-    /* height: 520px; */
-    /* background-color: bisque; */
-    /* padding: 5x; */
+    display: flex;
+    justify-content: flex-end;
+    
 }
 
 #pen {
-  background: chartreuse;
+  /* background: chartreuse; */
+  display: flex;
+  justify-content: space-around;
+  /* height: 30px; */
+  /* background-color: blue; */
+  align-items: center;
+}
+.eraserImg {
+  /* background: bisque; */
+  transition: 1s;
+}
+#eraser {
   display: flex;
   justify-content: center;
+  align-items: center;
+  width: 50px;
+  box-sizing: border-box;
+  padding: 5px;
+  transition: 1s;
+  border-radius: 10px;
+  /* border: 1px solid white; */
+}
 
+.eraserActive {
+background: #e0d394;
+box-shadow:  7px 7px 11px #b5ab78,
+             -7px -7px 11px #fffbb0;
 }
 #penImg {
   /* background: chocolate; */
   border-radius: 10px;
   transition: 1s;
+  height: 30px;
 }
 #canvas {
     min-height: 500px; 
+    max-height: 500px;
     width: 800px;
    /* padding: 5px; */
-    background-color: rgb(185, 187, 180);
+    background-color: whitesmoke;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;  
     align-items: center;
+    box-sizing: border-box;
+
+    
 }
 .tools {
     display: flex;
@@ -96,12 +235,6 @@ button {
   0% {
     transform: rotate(0);
   }
-  /* 25% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(0);
-  } */
   100% {
     transform: scale(0.75)
   }
@@ -119,7 +252,7 @@ button {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    border: 0.5px dotted white;
+    border: 0.5px dotted black;
     transition: 0.5s;
 }
 .borderChange {

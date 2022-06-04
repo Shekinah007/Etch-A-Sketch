@@ -6,16 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="style.css" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <!-- <script src="node_modules/dom-to-image-more/dist/dom-to-image-more.min.js" defer></script> -->
+    <!-- <script src="https://unpkg.com/dom-to-image-more" defer></script> -->
+    <script src="bundle.js" defer></script>
+
 
 </head>
 <body>
-    <h1>Etch-A-Sketch</h1>
+    <header>
+        <div class="overlay"></div>
+        <h1>Etch-A-Sketch</h1>
+        <img src="images/352432_info_icon_circle.svg" class="info-btn">
+    </header>
     <main>
+        <div class="info-panel">
+            
+            <!-- <p></p> 
+            <p></p> -->
+            <ul class="flex">
+                <h3>Instructions </h3>
+                <li>Click once with mouse over canvas to toggle brush on and off.</li>
+                <li>The tiny brush icon indicates then brush tool is active.</li>
+                <li>Alternatively, hold shift over canvas as to draw.</li>
+                <li>You can change the color of the canvas and brush using the color pickers.</li>
+                <li>Toggle the eraser tool by clicking on the eraser icon.</li>
+                <li>Toggle view of the grid lines using the "Show Grid" button</li>
+                <li>Use slider to change grid size</li>
+                <ol>
+                   
+                    <p><b>Note: </b> Changing the grid size will refresh the canvas.</p>
+                </ol>
+            </ul>
+        </div>
         <div class="tools">
-            <span id="pen"><img alt="pen active state" src="./images/brush_FILL0_wght400_GRAD0_opsz48.svg" id="penImg"> </span>
-            <button id="eraser">Eraser</button>
-            <button id="gridToggle"> Show Grid Lines</button>
+            <span id="pen">
+                <!-- <img alt="pen active state" src="./images/brush_FILL0_wght400_GRAD0_opsz48.svg" id="penImg"> -->
+                <div id="eraser"><img  class="eraserImg" alt="eraser" src="./images/eraser-solid.svg"> </img></div>
+            </span>
+            <!-- <button id="eraser">Eraser </button> -->
+            <button id="gridToggle"> Show Grid </button>
+            <button id="reset"> Reset </button>
             <span class="color-and-label">
                 <span>Canvas:</span>
                 <input type="color" id="canvasColor" class="color-picker" alt="change canvas">
@@ -25,18 +55,19 @@
                 <input type="color" id="brushColor" class="color-picker" alt= "change brush">
             </span>
             
-            <input type="text" id="hex">
             <div class="range">
-                <div id="rangeControllers">
+                <h3>Resolution: </h3>
+                <div id="rangeControllers">                  
                     <button class="rangeCounter" id="decrement"><</button>
-                    <input type="range"  min="5" max="20" step="1" id="resolution">
+                    <input type="range"  min="5" max="20" step="5" id="resolution">
                     <button class="rangeCounter" id="increment" >  ></button>
                 </div>
                 <h3></h3>
+                <button id="saveBtn"> Save Image </button>
             </div>
         </div>
-        <!-- <hr> -->
         <div class="canvas-container">
+            <img alt="pen active state" src="./images/brush_FILL0_wght400_GRAD0_opsz48.svg" id="penImg">
             <div id="canvas">
             </div>
         </div>

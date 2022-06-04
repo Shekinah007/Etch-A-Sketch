@@ -1,4 +1,5 @@
-console.clear();
+// console.clear();
+let domtoimage = require("dom-to-image-more");
 
 let mouseDown = false;
 let paintedCells = [];
@@ -10,7 +11,7 @@ let numberOfCells = 4000;
 let showGrid = true;
 let penActive = false;
 
-const eraserTool = document.getElementById("eraser");
+const eraserTool = document.querySelector("#eraser");
 const canvas = document.getElementById("canvas");
 const canvasColor = document.getElementById("canvasColor");
 const brushColor = document.getElementById("brushColor");
@@ -18,7 +19,44 @@ const rangeInput = document.getElementById("resolution");
 const rangeCounter = document.querySelectorAll(".rangeCounter");
 const gridButton = document.getElementById("gridToggle");
 const penIndicator = document.getElementById("penImg");
+const infoPanel = document.querySelector(".info-panel");
+const infoBtn = document.querySelector(".info-btn");
+const overlay = document.querySelector(".overlay");
+const resetBtb = document.querySelector("#reset");
+const saveBtn = document.querySelector("#saveBtn");
 
+// domtoimage
+//   .toPng(canvas)
+//   .then(function (dataUrl) {
+//     var img = new Image();
+//     img.src = dataUrl;
+//     document.body.appendChild(img);
+//   })
+//   .catch(function (error) {
+//     console.error("oops, something went wrong!", error);
+//   });
+
+saveBtn.addEventListener("click", () => {
+  domtoimage
+    .toPng(canvas)
+    .then(function (dataUrl) {
+      var img = new Image();
+      img.src = dataUrl;
+      document.body.appendChild(img);
+    })
+    .catch(function (error) {
+      console.error("oops, something went wrong!", error);
+    });
+});
+resetBtb.addEventListener("click", () => {
+  canvas.innerHTML = "";
+  createDiv();
+});
+infoBtn.addEventListener("click", () => {
+  infoPanel.classList.toggle("info-panel-visible");
+  overlay.classList.toggle("overlay-visible");
+  // infoBtn.classList.toggle("info-btn-active");
+});
 gridButton.addEventListener("click", () => {
   // showGrid = !showGrid;
   cellArray.forEach((cell) => {
@@ -27,12 +65,11 @@ gridButton.addEventListener("click", () => {
 });
 rangeCounter.forEach((counter) => {
   counter.addEventListener("click", (event) => {
-    if (event.target.id === "decrement") {
-      rangeInput.value = rangeInput.value - 1;
-      console.log(rangeInput.value);
-    }
     if (event.target.id === "increment") {
-      rangeInput.value = rangeInput.value + 1;
+      rangeInput.value = rangeInput.value + 5;
+      console.log(rangeInput.value);
+    } else if (event.target.id === "decrement") {
+      rangeInput.value = rangeInput.value - 5;
       console.log(rangeInput.value);
     }
     calculateResolution(rangeInput.value);
@@ -61,6 +98,7 @@ rangeInput.onchange = () => {
 
 eraserTool.addEventListener("click", () => {
   eraser = !eraser;
+  eraserTool.classList.toggle("eraserActive");
   console.log(eraser);
 });
 canvas.addEventListener("mousedown", () => {
@@ -74,9 +112,13 @@ canvas.addEventListener("mousedown", () => {
     console.log("Pen Inactive");
     // penIndicator.style.backgroundColor = "cyan";
     // penIndicator.classList.remove("penAnimation");
-
     mouseDown = true;
   }
+});
+
+canvas.addEventListener("mouseleave", () => {
+  mouseDown = false;
+  penIndicator.classList.remove("penAnimation");
 });
 
 function createDiv() {
@@ -91,11 +133,15 @@ function createDiv() {
         // cell.classList.add("changeColour");
         cell.style.backgroundColor = brushColor.value;
       }
-      if (e.shiftKey) {
+      if (e.shiftKey === true && eraser === true) {
+        cell.style.background = "none";
+        // penIndicator.style.backgroundColor = "green";
+      } else if (e.shiftKey && mouseDown != true) {
         // cell.classList.add("changeColour");
         cell.style.backgroundColor = brushColor.value;
-        penIndicator.style.backgroundColor = "green";
+        // penIndicator.style.backgroundColor = "yellow";
       }
+
       if (mouseDown == true && eraser === true) {
         cell.style.transition = "0s";
         cell.style.background = "none";
@@ -104,7 +150,6 @@ function createDiv() {
 
     canvas.appendChild(cell);
     cellArray.push(cell);
-    // console.log(cellArray);
   }
 }
 
@@ -113,12 +158,14 @@ window.addEventListener("load", () => {
 });
 
 window.addEventListener("keydown", (e) => {
-  penIndicator.style.backgroundColor = "green";
+  // penIndicator.style.backgroundColor = brushColor.value;
   penIndicator.classList.add("penAnimation");
 });
 window.addEventListener("keyup", (e) => {
   penIndicator.style.background = "none";
-  penIndicator.classList.remove("penAnimation");
+  if (mouseDown != true) {
+    penIndicator.classList.remove("penAnimation");
+  }
 });
 
 // setTimeout(() => {
@@ -133,3 +180,4 @@ window.addEventListener("keyup", (e) => {
 //     });
 //   });
 // }, 1000);
+// import domtoimage from "dom-to-image-more";
