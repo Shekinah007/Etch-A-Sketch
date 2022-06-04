@@ -28,37 +28,19 @@ const infoBtn = document.querySelector(".info-btn");
 const overlay = document.querySelector(".overlay");
 const resetBtb = document.querySelector("#reset");
 const saveBtn = document.querySelector("#saveBtn");
-// const downloadBtn = document.querySelector("#downloadBtn");
 
-// domtoimage
-//   .toPng(canvas)
-//   .then(function (dataUrl) {
-//     var img = new Image();
-//     img.src = dataUrl;
-//     document.body.appendChild(img);
-//   })
-//   .catch(function (error) {
-//     console.error("oops, something went wrong!", error);
-//   });
-
-// Store the image source externally.
-let imgSource;
 saveBtn.addEventListener("click", () => {
   domtoimage
     .toPng(canvas)
     .then(function (dataUrl) {
       var img = new Image();
       img.src = dataUrl;
-      imgSource = dataUrl;
-      console.log(dataUrl);
 
-      // downloadBtn.href = dataUrl;
       const anchor = document.createElement("a");
       anchor.href = dataUrl;
       anchor.download = "Etch-A-Sketch";
       anchor.click();
 
-      console.log("Image Source: ");
       // document.body.appendChild(img);
     })
     .catch(function (error) {
@@ -121,24 +103,21 @@ eraserTool.addEventListener("click", () => {
   eraserTool.classList.toggle("eraserActive");
   console.log(eraser);
 });
-canvas.addEventListener("mousedown", () => {
+canvas.addEventListener("mousedown", (e) => {
   penIndicator.classList.toggle("penAnimation");
-  if (mouseDown === true) {
-    console.log("pen Active");
-    // penIndicator.style.backgroundColor = "grey";
-    // penIndicator.classList.add("penAnimation");
-    mouseDown = false;
-  } else {
-    console.log("Pen Inactive");
-    // penIndicator.style.backgroundColor = "cyan";
-    // penIndicator.classList.remove("penAnimation");
-    mouseDown = true;
-  }
+  // if (mouseDown === true) {
+  //   console.log("pen Active");
+  //   mouseDown = false;
+  // } else {
+  //   console.log("Pen Inactive");
+  //   mouseDown = true;
+  // }
+  mouseDown = true;
+  e.preventDefault();
 });
-
-canvas.addEventListener("mouseleave", () => {
+canvas.addEventListener("mouseup", (e) => {
   mouseDown = false;
-  penIndicator.classList.remove("penAnimation");
+  penIndicator.classList.toggle("penAnimation");
 });
 
 function createDiv() {
@@ -149,17 +128,14 @@ function createDiv() {
     cell.style.height = cellHeight + "px";
     cell.style.width = cellHeight + "px";
     cell.addEventListener("mousemove", (e) => {
-      if (mouseDown == true) {
-        // cell.classList.add("changeColour");
+      if (mouseDown === true) {
         cell.style.backgroundColor = brushColor.value;
       }
       if (e.shiftKey === true && eraser === true) {
         cell.style.background = "none";
-        // penIndicator.style.backgroundColor = "green";
       } else if (e.shiftKey && mouseDown != true) {
         // cell.classList.add("changeColour");
         cell.style.backgroundColor = brushColor.value;
-        // penIndicator.style.backgroundColor = "yellow";
       }
 
       if (mouseDown == true && eraser === true) {
@@ -173,25 +149,26 @@ function createDiv() {
   }
 }
 window.addEventListener("keypress", (e) => {
-  // console.log(e.key);
   if (e.key == "e" || e.key == "E") {
     eraser = !eraser;
     eraserTool.classList.toggle("eraserActive");
   }
 });
-window.addEventListener("load", () => {
-  createDiv();
-});
 
 window.addEventListener("keydown", (e) => {
-  // penIndicator.style.backgroundColor = brushColor.value;
-  penIndicator.classList.add("penAnimation");
+  console.log(e.key);
+  if (e.key === "Shift") {
+    penIndicator.classList.add("penAnimation");
+  }
 });
+
 window.addEventListener("keyup", (e) => {
-  penIndicator.style.background = "none";
   if (mouseDown != true) {
     penIndicator.classList.remove("penAnimation");
   }
+});
+window.addEventListener("load", () => {
+  createDiv();
 });
 
 // setTimeout(() => {
@@ -206,6 +183,5 @@ window.addEventListener("keyup", (e) => {
 //     });
 //   });
 // }, 1000);
-// import domtoimage from "dom-to-image-more";
 
 },{"dom-to-image-more":1}]},{},[2]);
