@@ -2,6 +2,7 @@ body {
     background: antiquewhite;
     background-color: #e0d394;
     /* background-color: black; */
+    /* color: whitesmoke; */
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -40,7 +41,7 @@ header {
   /* height: 100vh; */
 }
 .info-btn {
-  height: 40px;
+  height: 50px;
   /* animation: bounce;   */
   /* animation-duration: 2s; */
   /* animation-iteration-count: infinite; */
@@ -111,6 +112,7 @@ header {
 main {
     display: flex;
     justify-content: space-around;
+    /* flex-direction: column; */
     height: 500px;
     align-items: space-between;
     padding-top: 5px;
@@ -154,14 +156,15 @@ main {
 
 .eraserActive {
 background: #e0d394;
-box-shadow:  7px 7px 11px #b5ab78,
-             -7px -7px 11px #fffbb0;
+/* background: #37cf3f; */
+box-shadow:  8px 8px 12px #b5ab78,
+             -8px -8px 12px #fffbb0;
 }
 #penImg {
   /* background: chocolate; */
   border-radius: 10px;
   transition: 1s;
-  height: 30px;
+  height: 50px;
 }
 #canvas {
     min-height: 500px; 
@@ -201,7 +204,7 @@ button:hover {
 }
 .penAnimation {
   animation-direction: alternate;
-  animation: penActive 2s;
+  animation: penActive 1s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
 }
@@ -262,6 +265,20 @@ button {
     background-color: blue;
 }
 
+.range {
+  /* background-color: aqua; */
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
+  /* height: 70px; */
+  padding: 10px;
+  box-sizing: border-box;
+  gap: 15px;
+  border-radius: 20px;
+  padding-bottom: 20px;
+}
 #rangeControllers {
     display: flex;
     align-items: center;
@@ -276,10 +293,11 @@ button {
 
 
 input[type=range] {
-    height: 37px;
+    /* height: 37px; */
     -webkit-appearance: none;
-    margin: 10px 0;
+    /* margin: 10px 0; */
     width: 100%;
+    background: black;
   }
   input[type=range]:focus {
     outline: none;

@@ -2,7 +2,6 @@
 let domtoimage = require("dom-to-image-more");
 
 let mouseDown = false;
-let paintedCells = [];
 let cellArray = [];
 const stepValues = [5, 10, 20];
 let eraser = false;
@@ -24,6 +23,7 @@ const infoBtn = document.querySelector(".info-btn");
 const overlay = document.querySelector(".overlay");
 const resetBtb = document.querySelector("#reset");
 const saveBtn = document.querySelector("#saveBtn");
+// const downloadBtn = document.querySelector("#downloadBtn");
 
 // domtoimage
 //   .toPng(canvas)
@@ -36,18 +36,31 @@ const saveBtn = document.querySelector("#saveBtn");
 //     console.error("oops, something went wrong!", error);
 //   });
 
+// Store the image source externally.
+let imgSource;
 saveBtn.addEventListener("click", () => {
   domtoimage
     .toPng(canvas)
     .then(function (dataUrl) {
       var img = new Image();
       img.src = dataUrl;
-      document.body.appendChild(img);
+      imgSource = dataUrl;
+      console.log(dataUrl);
+
+      // downloadBtn.href = dataUrl;
+      const anchor = document.createElement("a");
+      anchor.href = dataUrl;
+      anchor.download = "Etch-A-Sketch";
+      anchor.click();
+
+      console.log("Image Source: ");
+      // document.body.appendChild(img);
     })
     .catch(function (error) {
       console.error("oops, something went wrong!", error);
     });
 });
+
 resetBtb.addEventListener("click", () => {
   canvas.innerHTML = "";
   createDiv();
@@ -63,10 +76,12 @@ gridButton.addEventListener("click", () => {
     cell.classList.toggle("borderChange");
   });
 });
+
 rangeCounter.forEach((counter) => {
   counter.addEventListener("click", (event) => {
     if (event.target.id === "increment") {
-      rangeInput.value = rangeInput.value + 5;
+      console.log(rangeInput.value);
+      rangeInput.value = rangeInput.value + 1;
       console.log(rangeInput.value);
     } else if (event.target.id === "decrement") {
       rangeInput.value = rangeInput.value - 5;
@@ -152,7 +167,13 @@ function createDiv() {
     cellArray.push(cell);
   }
 }
-
+window.addEventListener("keypress", (e) => {
+  // console.log(e.key);
+  if (e.key == "e" || e.key == "E") {
+    eraser = !eraser;
+    eraserTool.classList.toggle("eraserActive");
+  }
+});
 window.addEventListener("load", () => {
   createDiv();
 });

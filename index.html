@@ -25,15 +25,14 @@
             <p></p> -->
             <ul class="flex">
                 <h3>Instructions </h3>
-                <li>Click once with mouse over canvas to toggle brush on and off.</li>
-                <li>The tiny brush icon indicates then brush tool is active.</li>
-                <li>Alternatively, hold shift over canvas as to draw.</li>
+                <li>Click once with mouse over canvas to activate/deactivate cursor.</li>
+                <li>Alternatively, hold shift over canvas to activate the cursor.</li>
+                <li>The brush icon indicates when the cursor is active.</li>    
                 <li>You can change the color of the canvas and brush using the color pickers.</li>
-                <li>Toggle the eraser tool by clicking on the eraser icon.</li>
-                <li>Toggle view of the grid lines using the "Show Grid" button</li>
-                <li>Use slider to change grid size</li>
-                <ol>
-                   
+                <li>Toggle the eraser tool by pressing "E" or clicking on the eraser icon.</li>
+                <li>Toggle view of the grid lines using the "Show Grid" button.</li>
+                <li>Use the slider to change grid size.</li>
+                <ol>                 
                     <p><b>Note: </b> Changing the grid size will refresh the canvas.</p>
                 </ol>
             </ul>
@@ -56,15 +55,16 @@
             </span>
             
             <div class="range">
-                <h3>Resolution: </h3>
+               
                 <div id="rangeControllers">                  
                     <button class="rangeCounter" id="decrement"><</button>
-                    <input type="range"  min="5" max="20" step="5" id="resolution">
+                    <input type="range"  min="5" max="25" step="5" id="resolution">
                     <button class="rangeCounter" id="increment" >  ></button>
                 </div>
-                <h3></h3>
-                <button id="saveBtn"> Save Image </button>
+                <span> Grid Size </span>
             </div>
+            <button id="saveBtn"> Save Image </button>
+            <!-- <a id="downloadBtn" download="Image">Download</a> -->
         </div>
         <div class="canvas-container">
             <img alt="pen active state" src="./images/brush_FILL0_wght400_GRAD0_opsz48.svg" id="penImg">
