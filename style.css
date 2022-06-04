@@ -1,12 +1,8 @@
 body {
     background: antiquewhite;
     background-color: #e0d394;
-    /* background-color: black; */
-    /* color: whitesmoke; */
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: space-between; */
     justify-items: center;
     align-content: center;
     font-family: serif;
@@ -42,10 +38,6 @@ header {
 }
 .info-btn {
   height: 50px;
-  /* animation: bounce;   */
-  /* animation-duration: 2s; */
-  /* animation-iteration-count: infinite; */
-  /* background: red; */
   z-index: 8;
   border-radius: 50%;
   animation: pulse 2s cubic-bezier(0.64, 0, 0.78, 0) 1s infinite normal forwards;
@@ -65,22 +57,18 @@ header {
 		transform: scale(1);
 		transform-origin: center center;
 	}
-
 	10% {
 		animation-timing-function: ease-in;
 		transform: scale(0.91);
 	}
-
 	17% {
 		animation-timing-function: ease-out;
 		transform: scale(0.98);
 	}
-
 	33% {
 		animation-timing-function: ease-in;
 		transform: scale(0.87);
 	}
-
 	45% {
 		animation-timing-function: ease-out;
 		transform: scale(1);
@@ -89,17 +77,13 @@ header {
 .info-panel {
   background: burlywood;
   position: absolute;
-  width: 0;
-  height: 0;
   overflow: hidden;
-  
-  height: 00vh;
-  width: 00vw;
+  height: 00;
+  width: 00;
   right: 55px;
   top: 55px;
   bottom: 0;
 
-  
   border-radius: 10px;
   transition: 0.5s;
   z-index: 4;
@@ -113,58 +97,44 @@ header {
 main {
     display: flex;
     justify-content: space-around;
-    /* flex-direction: column; */
     height: 500px;
     align-items: space-between;
     padding-top: 5px;
     padding-bottom: 5px;
-    /* background: cadetblue; */
-    background: #e0d394;
-    /* background: black; */
-    /* border-radius: 15%; */
     box-shadow: 11.71px 11.71px 15px #CCC087, -11.71px -11.71px 15px #F4E6A1;
 }
 
 .canvas-container {
     display: flex;
-    justify-content: flex-end;
-    
+    justify-content: flex-end;  
 }
 
 #pen {
-  /* background: chartreuse; */
   display: flex;
-  justify-content: space-around;
-  /* height: 30px; */
-  /* background-color: blue; */
   align-items: center;
 }
-.eraserImg {
-  /* background: bisque; */
-  transition: 1s;
-}
+
 .eraser {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
-  /* box-sizing: border-box; */
   padding: 5px;
   transition: 1s;
   border-radius: 10px;
-  /* border: 1px solid white; */
+  background: #e0d394;
+  box-shadow:  2px 2px 4px #b5ab78,
+             -2px -2px 4px #fffbb0;
 }
 
 .eraserActive {
-background: #e0d394;
-/* background: burlywood; */
-/* width: 00px; */
+background: #f3e28d;
 padding-inline: 30px;
 box-shadow:  8px 8px 12px #b5ab78,
              -8px -8px 12px #fffbb0;
 }
 #penImg {
-  /* background: chocolate; */
+  background: #e0d394;
   border-radius: 10px;
   transition: 1s;
   height: 35px;
@@ -180,9 +150,7 @@ box-shadow:  8px 8px 12px #b5ab78,
     flex-wrap: wrap;
     justify-content: center;  
     align-items: center;
-    box-sizing: border-box;
-
-    
+    box-sizing: border-box;    
 }
 
 ul button {
@@ -205,8 +173,9 @@ ul li {
 }
 .color-and-label {
   /* background: coral; */
+  padding-inline: 10px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 button:hover {
@@ -236,8 +205,6 @@ button:active {
   animation-direction: alternate;
   animation: rotate 5s;
   color: antiquewhite;
-  /* background: cadetblue; */
-  /* animation-iteration-count: infinite; */
   animation-direction: alternate;  
 }
 button {
@@ -260,8 +227,6 @@ button {
 .color-picker {
     border-radius : 5px;
     border: none;
-    /* width: 70px;
-    height: 40px; */
     margin-top: 2px;
     padding: 5px;
     background-color: rgb(255, 255, 255);
@@ -287,13 +252,11 @@ button {
   margin-inline: 4px;;
 }
 .range {
-  /* background-color: aqua; */
   display: flex;
   border: 1px solid black;
   flex-direction: column-reverse;
   align-items: center;
   justify-content: space-between;
-  /* height: 70px; */
   padding: 10px;
   box-sizing: border-box;
   gap: 15px;
@@ -309,7 +272,12 @@ button {
 
 #resolution {
     background: none;
-   
+}
+
+.dark-mode {
+  color: white;
+  background-color: black;
+  box-shadow: none;
 }
 
 

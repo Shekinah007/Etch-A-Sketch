@@ -22,7 +22,7 @@
         <div class="info-panel">
             <ul class="flex">
                 <h3>Instructions </h3>
-                <li>Click and drag to interact with cursor canvas.</li>
+                <li>Click and drag cursor to interact with  canvas.</li>
                 <li>Alternatively, hold "Shift" on your keyboard and drag cursor to do same.</li>
                 <li>You can change the color of the canvas and brush using the color pickers.</li>
                 <li>Toggle the eraser tool by pressing "E" on your keyboard or clicking on the
@@ -36,6 +36,7 @@
                     <p><b>Note: </b> Changing the grid size will also clear the canvas.</p>
                 </ol>
                 <li>Click <button>Save Image</button> to download image. </li>
+                <li>Press "M" on your keyboard to toggle between day/night themes. </li>
             </ul>
         </div>
         <div class="tools">
@@ -44,8 +45,6 @@
                 <div id="eraser" class="eraser"><img  class="eraserImg" alt="eraser" src="./images/eraser-solid.svg"> </img></div>
             </span>
             <!-- <button id="eraser">Eraser </button> -->
-            <button id="gridToggle"> Show Grid </button>
-            <button id="reset"> Refresh </button>
             <span class="color-and-label">
                 <span>Canvas:</span>
                 <input type="color" id="canvasColor" class="color-picker" alt="change canvas">
@@ -55,8 +54,7 @@
                 <input type="color" id="brushColor" class="color-picker" alt= "change brush">
             </span>
             
-            <div class="range">
-               
+            <div class="range">              
                 <div id="rangeControllers">                  
                     <!-- <button class="rangeCounter" id="decrement"><</button> -->
                     <input type="range"  min="10" max="25" step="5" id="resolution">
@@ -64,6 +62,8 @@
                 </div>
                 <span> Grid Size </span>
             </div>
+            <button id="gridToggle"> Show Grid </button>
+            <button id="reset"> Refresh </button>
             <button id="saveBtn"> Save Image </button>
         </div>
         <div class="canvas-container">

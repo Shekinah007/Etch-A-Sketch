@@ -7,3 +7,6 @@ Maybe add info drop down. \_>
 Preview image.
 Download image. >
 Dark mode.
+Confirmation prompt before refresh.
+Open color-picker at mouse location.
+Color-picker for grid color.

@@ -28,6 +28,8 @@ const infoBtn = document.querySelector(".info-btn");
 const overlay = document.querySelector(".overlay");
 const resetBtb = document.querySelector("#reset");
 const saveBtn = document.querySelector("#saveBtn");
+const body = document.querySelector("body");
+const main = document.querySelector("main");
 
 saveBtn.addEventListener("click", () => {
   domtoimage
@@ -148,15 +150,20 @@ function createDiv() {
     cellArray.push(cell);
   }
 }
+
+window.addEventListener("keydown", (e) => {});
+
 window.addEventListener("keypress", (e) => {
-  if (e.key == "e" || e.key == "E") {
+  if (e.key === "e" || e.key === "E") {
     eraser = !eraser;
     eraserTool.classList.toggle("eraserActive");
+  } else if (e.key === "m" || e.key === "M") {
+    body.classList.toggle("dark-mode");
+    main.classList.toggle("dark-mode");
   }
 });
 
 window.addEventListener("keydown", (e) => {
-  console.log(e.key);
   if (e.key === "Shift") {
     penIndicator.classList.add("penAnimation");
   }
